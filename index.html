@@ -3,104 +3,149 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chalyahub - Free Movies</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CHALYAHUB | Movie Streaming</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#090909;color:white;font-family:Arial,sans-serif}
-header{background:#111;padding:20px;text-align:center;border-bottom:2px solid #d4af37}
-header h1{color:#d4af37;font-size:30px;margin:5px}
-header p{color:#ccc}
-nav{padding:15px;text-align:center}
-nav a{color:#d4af37;margin:10px;text-decoration:none}
-.hero{text-align:center;padding:45px 15px;background:linear-gradient(120deg,#241b08,#080808)}
-.hero h2{font-size:30px;color:#e5c15b}
-input{width:90%;max-width:450px;padding:14px;border-radius:8px;border:1px solid #d4af37;background:#181818;color:white}
-section{padding:20px}
-section h2{color:#d4af37}
-.movies{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:15px}
-.card{background:#171717;border:1px solid #5c481c;border-radius:10px;overflow:hidden;text-align:center;padding-bottom:15px}
-.poster{height:145px;background:linear-gradient(145deg,#3a2b0c,#111);display:flex;align-items:center;justify-content:center;font-size:45px}
-.card h3{font-size:16px}
-.card p{font-size:12px;color:#bbb;padding:0 8px}
-.card a{display:inline-block;background:#d4af37;color:#111;padding:9px 12px;text-decoration:none;border-radius:5px;font-weight:bold;font-size:12px}
-footer{text-align:center;padding:25px;color:#aaa;background:#111;margin-top:30px}
+body{margin:0;background:#080808;color:white;font-family:Arial,sans-serif}
+header{background:#111;padding:18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #292929;position:sticky;top:0;z-index:5}
+.logo{font-size:25px;font-weight:bold;letter-spacing:2px;color:#fff}
+.logo span{color:#e0b52d}
+nav a{color:#ddd;text-decoration:none;margin-left:12px;font-size:13px}
+.hero{padding:55px 20px;background:linear-gradient(90deg,#080808,#202020);min-height:260px}
+.hero small{color:#e0b52d;letter-spacing:3px}
+.hero h1{font-size:38px;margin:15px 0}
+.hero p{color:#ccc;max-width:500px;line-height:1.5}
+button{background:#e0b52d;border:0;padding:12px 20px;border-radius:5px;font-weight:bold;cursor:pointer}
+.search{padding:20px}
+input{width:100%;padding:14px;background:#191919;color:white;border:1px solid #444;border-radius:7px;font-size:15px}
+.categories{display:flex;gap:9px;overflow-x:auto;padding:5px 20px 18px}
+.categories button{white-space:nowrap}
+.categories button.active{background:#fff}
+section{padding:15px 20px}
+h2{font-size:21px}
+h2 span{color:#e0b52d}
+.movies{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.movie{background:#171717;border-radius:8px;overflow:hidden}
+.poster{width:100%;height:170px;object-fit:cover;background:#222}
+.movie h3{font-size:15px;margin:10px}
+.movie p{font-size:12px;color:#aaa;margin:10px}
+.movie button{margin:0 10px 12px;padding:9px 14px}
+#playerArea{display:none;background:#151515;padding:20px;margin:20px;border:1px solid #444;border-radius:9px}
+video{width:100%;max-height:400px;background:black}
+#playerArea iframe{width:100%;height:240px;border:0;background:#000}
+footer{text-align:center;color:#888;padding:30px;background:#111;margin-top:30px}
+@media(min-width:650px){.movies{grid-template-columns:repeat(4,1fr)}.poster{height:230px}}
 </style>
 </head>
 <body>
 
 <header>
-<h1>CHALYAHUB</h1>
-<p>Your Cinema. Your Entertainment.</p>
-</header>
-
+<div class="logo">CHALYA<span>HUB</span></div>
 <nav>
 <a href="#home">Home</a>
 <a href="#movies">Movies</a>
-<a href="#about">About</a>
 </nav>
+</header>
 
 <div class="hero" id="home">
-<h2>Welcome to Chalyahub</h2>
-<p>Discover movies you can watch legally for free.</p>
-<input id="search" type="text" placeholder="Search movies..." oninput="searchMovies()">
+<small>WELCOME TO YOUR CINEMA</small>
+<h1>Unlimited Entertainment.</h1>
+<p>Discover movies, explore new stories and enjoy your cinema experience.</p>
+<button onclick="document.getElementById('movies').scrollIntoView()">Explore Movies</button>
+</div>
+
+<div class="search">
+<input id="search" placeholder="Search for a movie..." oninput="filterMovies()">
+</div>
+
+<div class="categories">
+<button class="active" onclick="category('All',this)">All</button>
+<button onclick="category('Action',this)">Action</button>
+<button onclick="category('Comedy',this)">Comedy</button>
+<button onclick="category('Horror',this)">Horror</button>
+<button onclick="category('Romance',this)">Romance</button>
+<button onclick="category('Drama',this)">Drama</button>
 </div>
 
 <section id="movies">
-<h2>Explore Free Movies</h2>
-<div class="movies" id="movieList">
-
-<div class="card">
-<div class="poster">🎬</div>
-<h3>Classic Cinema</h3>
-<p>Explore classic films available online.</p>
-<a href="https://archive.org/details/feature_films" target="_blank">Explore Movies</a>
-</div>
-
-<div class="card">
-<div class="poster">🍿</div>
-<h3>Documentaries</h3>
-<p>Discover free documentary films.</p>
-<a href="https://archive.org/details/movies" target="_blank">Explore Movies</a>
-</div>
-
-<div class="card">
-<div class="poster">🎥</div>
-<h3>Silent Movies</h3>
-<p>Discover historic silent films.</p>
-<a href="https://archive.org/search?query=silent+films" target="_blank">Explore Movies</a>
-</div>
-
-<div class="card">
-<div class="poster">🌟</div>
-<h3>Public Domain Films</h3>
-<p>Find films offered for free viewing.</p>
-<a href="https://commons.wikimedia.org/wiki/Category:Films" target="_blank">Explore Films</a>
-</div>
-
-</div>
+<h2>Explore <span>Movies</span></h2>
+<div class="movies" id="movieList"></div>
 </section>
 
-<section id="about">
-<h2>About Chalyahub</h2>
-<p>Chalyahub is your online cinema discovery platform. We help you find movies available to watch for free from external sources.</p>
-<p>Always check the copyright and licence information before watching or sharing a film.</p>
-</section>
+<div id="playerArea">
+<h2 id="playingTitle">Now Playing</h2>
+<div id="player"></div>
+<button onclick="closePlayer()">Close Player</button>
+</div>
 
 <footer>
-<p>© 2026 Chalyahub. All rights reserved.</p>
-<p>Enjoy your cinema experience!</p>
+<h3>CHALYAHUB</h3>
+<p>Your Cinema. Your Entertainment.</p>
+<p>Only authorised movie streams are supported.</p>
+<p>© 2026 Chalyahub</p>
 </footer>
 
 <script>
-function searchMovies(){
-let value=document.getElementById("search").value.toLowerCase();
-document.querySelectorAll(".card").forEach(card=>{
-card.style.display=card.innerText.toLowerCase().includes(value)?"block":"none";
+const movies = [
+{title:"Big Buck Bunny",genre:"Comedy",poster:"https://peach.blender.org/wp-content/uploads/title_anouncement.jpg?x11217",type:"video",url:"https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"},
+{title:"Sintel",genre:"Drama",poster:"https://durian.blender.org/wp-content/uploads/2010/05/sintel_poster.jpg",type:"video",url:"https://media.w3.org/2010/05/sintel/trailer.mp4"},
+{title:"Tears of Steel",genre:"Action",poster:"https://mango.blender.org/wp-content/uploads/2013/05/01_thom_celia_bridge.jpg",type:"video",url:"https://storage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"},
+{title:"Elephants Dream",genre:"Drama",poster:"https://orange.blender.org/wp-content/themes/orange/images/media/gallery/s1_proog.jpg",type:"video",url:"https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"}
+];
+
+let selected="All";
+
+function displayMovies(){
+const list=document.getElementById("movieList");
+const term=document.getElementById("search").value.toLowerCase();
+list.innerHTML="";
+movies.filter(m=>(selected==="All"||m.genre===selected)&&m.title.toLowerCase().includes(term)).forEach(m=>{
+const card=document.createElement("div");
+card.className="movie";
+const poster=document.createElement("img");
+poster.className="poster";
+poster.src=m.poster;
+poster.alt=m.title;
+const title=document.createElement("h3");
+title.textContent=m.title;
+const genre=document.createElement("p");
+genre.textContent=m.genre;
+const btn=document.createElement("button");
+btn.textContent="▶ Watch";
+btn.onclick=()=>playMovie(m);
+card.append(poster,title,genre,btn);
+list.appendChild(card);
 });
 }
+function filterMovies(){displayMovies()}
+function category(name,btn){
+selected=name;
+document.querySelectorAll(".categories button").forEach(b=>b.classList.remove("active"));
+btn.classList.add("active");
+displayMovies();
+}
+function playMovie(m){
+document.getElementById("playerArea").style.display="block";
+document.getElementById("playingTitle").textContent="Now Playing: "+m.title;
+const player=document.getElementById("player");
+player.innerHTML="";
+const video=document.createElement("video");
+video.controls=true;
+video.autoplay=true;
+video.playsInline=true;
+const source=document.createElement("source");
+source.src=m.url;
+source.type="video/mp4";
+video.appendChild(source);
+player.appendChild(video);
+document.getElementById("playerArea").scrollIntoView({behavior:"smooth"});
+}
+function closePlayer(){
+document.getElementById("playerArea").style.display="none";
+document.getElementById("player").innerHTML="";
+}
+displayMovies();
 </script>
-
 </body>
 </html>
-
