@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080808">
+<title>ChalyaHub — Cinema at Home</title>
+<style>
+:root{--bg:#080808;--panel:#151515;--panel2:#1d1b17;--gold:#d8ad55;--gold2:#f4d58a;--muted:#b7b0a1;--white:#fffaf0}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--white);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+header{position:sticky;top:0;z-index:10;background:rgba(8,8,8,.94);backdrop-filter:blur(12px);border-bottom:1px solid #332819}
+.nav{max-width:1100px;margin:auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.brand{font-weight:900;letter-spacing:.5px;font-size:22px;color:var(--gold2)}.brand span{color:#fff}
+nav a{color:#ddd;text-decoration:none;margin-left:16px;font-size:14px}nav a:hover{color:var(--gold2)}
+.hero{max-width:1100px;margin:24px auto 0;padding:34px 18px 26px;display:grid;grid-template-columns:1.25fr .75fr;gap:24px;align-items:center}
+.kicker{color:var(--gold);font-weight:800;letter-spacing:2px;text-transform:uppercase;font-size:11px}
+h1{font-size:clamp(36px,7vw,66px);line-height:1.02;margin:12px 0;color:#fff}h1 em{font-style:normal;color:var(--gold2)}
+.hero p{color:var(--muted);line-height:1.65;max-width:580px}
+.hero-art{min-height:240px;border:1px solid #604a25;border-radius:20px;background:radial-gradient(circle at 50% 35%,#78531b 0,#382710 28%,#17120b 64%,#0d0d0d 100%);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.reel{font-size:100px;filter:drop-shadow(0 8px 20px #000);opacity:.9}.hero-art:after{content:"CHALYAHUB CINEMA";position:absolute;bottom:20px;letter-spacing:4px;color:#f2d28d;font-weight:800;font-size:12px}
+.searchrow{max-width:1100px;margin:0 auto;padding:0 18px 18px;display:flex;gap:10px}
+input,select{background:#171717;border:1px solid #554326;color:white;border-radius:12px;padding:13px 14px;font:inherit;min-width:0}
+input{flex:1}select{width:150px}
+main{max-width:1100px;margin:auto;padding:8px 18px 48px}
+.sectionhead{display:flex;justify-content:space-between;align-items:end;gap:10px;margin:22px 0 14px}.sectionhead h2{margin:0;font-size:22px}.sectionhead small{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.card{background:linear-gradient(145deg,#1b1b1b,#111);border:1px solid #30291d;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.poster{height:145px;display:grid;place-items:center;background:radial-gradient(circle at 50% 35%,#72511e,#21190e 65%,#101010);font-size:48px}
+.card:nth-child(2n) .poster{background:radial-gradient(circle at 50% 35%,#4b493e,#1b1b18 65%,#101010)}
+.card:nth-child(3n) .poster{background:radial-gradient(circle at 50% 35%,#60413b,#201413 65%,#101010)}
+.cardbody{padding:14px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card h3{margin:0;font-size:17px}.meta{font-size:12px;color:var(--gold2)}.card p{margin:0;color:var(--muted);font-size:13px;line-height:1.5;flex:1}
+.btn{display:inline-block;text-align:center;text-decoration:none;border:1px solid var(--gold);background:var(--gold);color:#171109;font-weight:800;padding:10px 13px;border-radius:10px;font-size:13px}
+.btn.secondary{background:transparent;color:var(--gold2)}
+.notice{margin-top:18px;padding:14px 16px;border-radius:14px;background:#17140e;border:1px solid #514020;color:#d8cfbd;font-size:13px;line-height:1.55}
+.sources{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.source{background:#141414;border:1px solid #332819;border-radius:14px;padding:15px}.source h3{margin:0 0 7px;color:var(--gold2);font-size:16px}.source p{margin:0 0 12px;color:var(--muted);font-size:13px;line-height:1.5}
+footer{text-align:center;padding:25px 18px;border-top:1px solid #2b2419;color:#918979;font-size:12px}
+.empty{display:none;color:var(--muted);padding:18px;text-align:center}
+@media(max-width:700px){.hero{grid-template-columns:1fr;padding-top:24px}.hero-art{min-height:150px}.reel{font-size:70px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.sources{grid-template-columns:1fr}nav a{margin-left:8px;font-size:12px}.brand{font-size:19px}}
+@media(max-width:390px){.grid{grid-template-columns:1fr}.poster{height:130px}nav a{font-size:11px}}
+</style>
+</head>
+<body>
+<header><div class="nav"><div class="brand">CHALYA<span>HUB</span> ✦</div><nav><a href="#movies">Movies</a><a href="#free-sources">Free sources</a></nav></div></header>
+<section class="hero">
+ <div><div class="kicker">Your home cinema</div><h1>Big stories.<br><em>Zero cost.</em></h1>
+ <p>Welcome to ChalyaHub — your starting point for discovering films you can watch legally for free. Browse the movie picks or explore trusted free-film libraries below.</p>
+ <a class="btn" href="#movies">Explore movies ↓</a></div>
+ <div class="hero-art"><div class="reel">🎞️</div></div>
+</section>
+<div class="searchrow"><input id="search" type="search" placeholder="Search movie picks…" aria-label="Search movie picks"><select id="genre" aria-label="Filter by genre"><option value="all">All genres</option><option>Drama</option><option>Comedy</option><option>Horror</option><option>Adventure</option><option>Animation</option></select></div>
+<main>
+ <section id="movies"><div class="sectionhead"><h2>Movie discovery</h2><small>Free-to-watch collections</small></div>
+ <div class="grid" id="cards">
+  <article class="card" data-title="night of the living dead" data-genre="Horror"><div class="poster">🧟</div><div class="cardbody"><h3>Night of the Living Dead</h3><div class="meta">HORROR · 1968 · PUBLIC DOMAIN IN THE U.S.</div><p>A landmark zombie horror film. Check the hosting page and local rights before viewing or reusing.</p><a class="btn" target="_blank" rel="noopener" href="https://archive.org/search?query=Night%20of%20the%20Living%20Dead%201968">Find free copies</a></div></article>
+  <article class="card" data-title="his girl friday" data-genre="Comedy"><div class="poster">🎭</div><div class="cardbody"><h3>His Girl Friday</h3><div class="meta">COMEDY · 1940 · RIGHTS VARY BY COUNTRY</div><p>Fast-paced newsroom comedy. Look for a clearly labelled lawful copy in a public film archive.</p><a class="btn" target="_blank" rel="noopener" href="https://archive.org/search?query=His%20Girl%20Friday%201940">Find free copies</a></div></article>
+  <article class="card" data-title="the general" data-genre="Adventure"><div class="poster">🚂</div><div class="cardbody"><h3>The General</h3><div class="meta">COMEDY / ADVENTURE · 1926</div><p>A silent-era train adventure. Many archival copies are available; confirm the rights notice on the item.</p><a class="btn" target="_blank" rel="noopener" href="https://archive.org/search?query=The%20General%201926%20Buster%20Keaton">Find free copies</a></div></article>
+  <article class="card" data-title="sita sings the blues" data-genre="Animation"><div class="poster">🎨</div><div class="cardbody"><h3>Sita Sings the Blues</h3><div class="meta">ANIMATION · 2008</div><p>An independent animated feature released under a Creative Commons licence. Check the licence terms on its official page.</p><a class="btn" target="_blank" rel="noopener" href="https://www.sitasingstheblues.com/">Official film site</a></div></article>
+  <article class="card" data-title="charade" data-genre="Drama"><div class="poster">🕵️</div><div class="cardbody"><h3>Charade</h3><div class="meta">MYSTERY / ROMANCE · 1963 · RIGHTS VARY BY COUNTRY</div><p>A stylish mystery starring Audrey Hepburn and Cary Grant. Check the source's rights information first.</p><a class="btn" target="_blank" rel="noopener" href="https://archive.org/search?query=Charade%201963%20film">Find free copies</a></div></article>
+  <article class="card" data-title="public domain films" data-genre="all"><div class="poster">🍿</div><div class="cardbody"><h3>More classic films</h3><div class="meta">ARCHIVE COLLECTION</div><p>Search a large archive for older films, then check each item's rights statement and whether it plays in your country.</p><a class="btn" target="_blank" rel="noopener" href="https://archive.org/details/feature_films">Browse film archive</a></div></article>
+ </div><div class="empty" id="empty">No matching picks. Try another search or genre.</div>
+ </section>
+ <section id="free-sources"><div class="sectionhead"><h2>Where to watch legally</h2><small>Availability can vary by country</small></div>
+ <div class="sources">
+  <div class="source"><h3>Internet Archive</h3><p>Explore digitized films and collections. Read the rights statement on each individual film page before watching or sharing.</p><a class="btn secondary" target="_blank" rel="noopener" href="https://archive.org/details/feature_films">Open archive</a></div>
+  <div class="source"><h3>Wikimedia Commons</h3><p>Find freely licensed or public-domain video files. Check each file's licence and attribution requirements.</p><a class="btn secondary" target="_blank" rel="noopener" href="https://commons.wikimedia.org/wiki/Category:Films">Browse films</a></div>
+  <div class="source"><h3>Public Domain Movies</h3><p>Discover classic films. Confirm the copyright status in your country before using or embedding any title.</p><a class="btn secondary" target="_blank" rel="noopener" href="https://publicdomainmovie.net/">Visit site</a></div>
+ </div>
+ <div class="notice"><strong>Copyright note:</strong> A film being old or free to stream does not automatically mean it is public domain everywhere. Copyright rules differ by country. ChalyaHub links to discovery pages rather than re-uploading films. Only embed, download, or share a movie when its rights or licence clearly allow it.</div>
+ </section>
+</main>
+<footer>© ChalyaHub · Made for movie lovers ✦<br>Independent movie discovery page — not affiliated with the linked archives.</footer>
+<script>
+const search=document.getElementById('search'), genre=document.getElementById('genre'), cards=[...document.querySelectorAll('.card')], empty=document.getElementById('empty');
+function filter(){const q=search.value.toLowerCase().trim(),g=genre.value;let shown=0;cards.forEach(c=>{const matchText=c.dataset.title.includes(q)||c.innerText.toLowerCase().includes(q);const matchGenre=g==='all'||c.dataset.genre===g||c.dataset.genre==='all';c.style.display=matchText&&matchGenre?'flex':'none';if(matchText&&matchGenre)shown++});empty.style.display=shown?'none':'block'}
+search.addEventListener('input',filter);genre.addEventListener('change',filter);
+</script>
+</body></html>
